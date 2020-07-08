@@ -7,10 +7,21 @@
     android:layout_height="wrap_content"
     tools:context=".SignupActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/black"
+        app:title="@string/app_name"
+        android:background="@color/WhiteSmoke">
+    </androidx.appcompat.widget.Toolbar>
+
     <EditText
         android:id="@+id/signupUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
