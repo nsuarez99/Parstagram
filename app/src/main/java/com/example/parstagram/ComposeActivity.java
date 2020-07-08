@@ -152,6 +152,9 @@ public class ComposeActivity extends AppCompatActivity {
                     Log.i(TAG, "Succesfully saved post");
                     composeDescription.setText("");
                     composeImage.setImageResource(0);
+                    Intent i = new Intent();
+                    setResult(RESULT_OK, i);
+                    finish();
                 }
             }
         });
