@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".LoginActivity">
+    tools:context=".SignupActivity">
 
     <EditText
         android:id="@+id/signupUsername"
@@ -19,8 +19,21 @@
         app:layout_constraintTop_toBottomOf="@+id/signupPassword" />
 
     <EditText
-        android:id="@+id/signupPassword"
+        android:id="@+id/signupEmail"
         android:layout_below="@+id/signupUsername"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="16dp"
+        android:hint="email"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteY="40dp" />
+
+    <EditText
+        android:id="@+id/signupPassword"
+        android:layout_below="@+id/signupEmail"
         android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,6 +44,7 @@
         android:inputType="textPassword"
         tools:layout_editor_absoluteY="40dp" />
 
+
     <Button
         android:id="@+id/loginButton"
         android:layout_below="@+id/signupPassword"
@@ -40,31 +54,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginRight="16dp"
         android:layout_centerHorizontal="true"
-        android:onClick="loginClick"
-        android:text="Login" />
-
-    <TextView
-        android:id="@+id/signupText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/loginButton"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:text="If you do no have an account click below:"
-        app:layout_constraintTop_toBottomOf="@+id/signupPassword" />
-
-    <Button
-        android:id="@+id/signupButton"
-        android:layout_below="@+id/signupText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginRight="16dp"
-        android:layout_centerHorizontal="true"
         android:onClick="signupClick"
-        android:text="SignUp" />
+        android:text="Signup" />
 
 </RelativeLayout>

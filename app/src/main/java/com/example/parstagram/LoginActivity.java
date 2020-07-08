@@ -26,8 +26,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginUsername = findViewById(R.id.loginUsername);
-        loginPassword = findViewById(R.id.loginPassword);
+        loginUsername = findViewById(R.id.signupUsername);
+        loginPassword = findViewById(R.id.signupPassword);
         loginButton = findViewById(R.id.loginButton);
 
         if (ParseUser.getCurrentUser() != null){
@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    //when login button is clicked attempts to login the user and if valid user goes to MainAcitivity
     public void loginClick(View view){
         Log.i(TAG, "login button clicked, attemtping to login");
         String username = loginUsername.getText().toString();
@@ -45,20 +46,29 @@ public class LoginActivity extends AppCompatActivity {
                 if (e != null){
                     //TODO better error handling
                     Log.e(TAG, "Issue with login", e);
-                    Toast.makeText(LoginActivity.this, "Issue with Login", Toast.LENGTH_SHORT);
+                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
                 }
                 else{
                     goMainActivity();
-                    Toast.makeText(LoginActivity.this, "Sucess", Toast.LENGTH_SHORT);
+                    Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT);
                 }
             }
         });
     }
 
+    //Creates intent to go to SignupAcitivty
+    public void signupClick(View view) {
+        Intent i = new Intent(this, SignupActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    //Creates intent to go to MainActivity and finishes this activity
     private void goMainActivity() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
     }
+
 }
