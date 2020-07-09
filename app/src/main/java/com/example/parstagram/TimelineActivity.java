@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class TimelineActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Post> posts;
     private PostsAdapter adapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class TimelineActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerViewPosts);
         toolbar = findViewById(R.id.toolbar);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshContainer);
         setSupportActionBar(toolbar);
 
         //set toolbar composing action
@@ -53,6 +56,23 @@ public class TimelineActivity extends AppCompatActivity {
             }
         });
 
+        // Setup refresh listener which triggers new data loading
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeRefreshLayout.setRefreshing(false)
+                // once the network request has completed successfully.
+                queryPosts();
+            }
+        });
+        // Configure the refreshing colors
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+        //setup recyclerview onclick listener
         PostsAdapter.OnClickListener onClickListener = new PostsAdapter.OnClickListener() {
             @Override
             public void onClick(int position) {
@@ -105,8 +125,9 @@ public class TimelineActivity extends AppCompatActivity {
                 }
 
                 // save received posts to list and notify adapter of new data
-                posts.addAll(objects);
-                adapter.notifyDataSetChanged();
+                adapter.clear();
+                adapter.addAll(objects);
+                swipeRefreshLayout.setRefreshing(false);
             }
             });
     }
