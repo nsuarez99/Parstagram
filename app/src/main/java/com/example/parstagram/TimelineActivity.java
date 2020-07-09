@@ -38,11 +38,11 @@ public class TimelineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timeline);
 
         recyclerView = findViewById(R.id.recyclerViewPosts);
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.timelineToolbar);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshContainer);
         setSupportActionBar(toolbar);
 
-        //set toolbar composing action
+        //set toolbar composing and setting action
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -105,7 +105,7 @@ public class TimelineActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.timeline_menu, menu);
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return true;
     }
 

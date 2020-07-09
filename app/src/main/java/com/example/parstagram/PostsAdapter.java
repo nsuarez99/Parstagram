@@ -85,6 +85,37 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(imagePost);
             }
+            setListeners();
+        }
+
+        private void setListeners() {
+            imagePost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickListener.onClick(getAdapterPosition());
+                }
+            });
+
+            username.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickListener.onClick(getAdapterPosition());
+                }
+            });
+
+            time.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickListener.onClick(getAdapterPosition());
+                }
+            });
+
+            description.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickListener.onClick(getAdapterPosition());
+                }
+            });
         }
     }
 }

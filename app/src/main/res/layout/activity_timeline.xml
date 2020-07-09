@@ -9,13 +9,13 @@
     tools:context=".TimelineActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/timelineToolbar"
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleTextColor="@android:color/black"
         app:title="@string/app_name"
-        app:menu="@menu/timeline_menu"
+        app:menu="@menu/toolbar_menu"
         android:background="@color/WhiteSmoke">
     </androidx.appcompat.widget.Toolbar>
 
@@ -24,7 +24,7 @@
         android:id="@+id/swipeRefreshContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar">
+        android:layout_below="@id/timelineToolbar">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPosts"

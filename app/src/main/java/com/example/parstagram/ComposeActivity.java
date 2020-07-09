@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
@@ -28,7 +27,6 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
-import java.util.Date;
 import java.util.List;
 
 public class ComposeActivity extends AppCompatActivity {
@@ -52,7 +50,7 @@ public class ComposeActivity extends AppCompatActivity {
         composeImage = findViewById(R.id.image);
         pictureButton = findViewById(R.id.pictureButton);
         submitButton = findViewById(R.id.submitButton);
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.timelineToolbar);
         setSupportActionBar(toolbar);
 
 //        queryPosts();
