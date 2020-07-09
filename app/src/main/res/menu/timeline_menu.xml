@@ -6,4 +6,9 @@
         android:icon="@drawable/instagram_new_post_filled_24"
         app:showAsAction="always"
         android:title="Compose" />
+    <item
+        android:id="@+id/settingIcon"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="Profile"
+        app:showAsAction="always" />
 </menu>

@@ -18,7 +18,6 @@ import com.parse.ParseQuery;
 
 import org.parceler.Parcels;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +50,11 @@ public class TimelineActivity extends AppCompatActivity {
                     Log.i(TAG, "composition has been clicked");
                     Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
                     startActivityForResult(i, REQUEST_CODE);
+                }
+                else if (item.getItemId() == R.id.settingIcon){
+                    Log.i(TAG, "profile has been clicked");
+                    Intent i = new Intent(TimelineActivity.this, SettingsActivity.class);
+                    startActivity(i);
                 }
                 return true;
             }
