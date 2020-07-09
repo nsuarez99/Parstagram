@@ -25,6 +25,7 @@ public class TimelineActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE = 20;
     public static final String TAG = "TimelineActivity";
+    private static final int NUMBER_POSTS = 20;
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private List<Post> posts;
@@ -90,7 +91,7 @@ public class TimelineActivity extends AppCompatActivity {
         // include data referred by user key
         query.include(Post.KEY_USER);
         // limit query to latest 20 items
-        query.setLimit(20);
+        query.setLimit(NUMBER_POSTS);
         // order posts by creation date (newest first)
         query.addDescendingOrder(Post.KEY_TIME);
         // start an asynchronous call for posts
@@ -101,11 +102,6 @@ public class TimelineActivity extends AppCompatActivity {
                 if (e != null) {
                     Log.e(TAG, "Issue with getting posts", e);
                     return;
-                }
-
-                // for debugging purposes let's print every post description to logcat
-                for (Post post : objects) {
-                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
                 }
 
                 // save received posts to list and notify adapter of new data
