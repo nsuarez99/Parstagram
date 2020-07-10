@@ -4,20 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    tools:context=".DetailActivity"
+    tools:context=".fragments.DetailFragment"
     android:orientation="vertical">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/detailToolbar"
-        android:minHeight="?attr/actionBarSize"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/black"
-        app:title="@string/app_name"
-        app:menu="@menu/toolbar_menu"
-        android:layout_margin="-8dp"
-        android:background="@color/WhiteSmoke">
-    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/detailUsername"
@@ -26,7 +14,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="4dp"
-        android:layout_below="@id/detailToolbar"
         android:layout_toStartOf="@+id/detailTime"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"

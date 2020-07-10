@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -15,14 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.parstagram.DetailActivity;
 import com.example.parstagram.Post;
 import com.example.parstagram.PostsAdapter;
 import com.example.parstagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseQuery;
-
-import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,14 +73,18 @@ public class TimelineFragment extends Fragment {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
+        final FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        final Fragment detailFragment = new DetailFragment();
+
         //setup recyclerview onclick listener
         PostsAdapter.OnClickListener onClickListener = new PostsAdapter.OnClickListener() {
             @Override
             public void onClick(int position) {
                 Post post = posts.get(position);
-                Intent i = new Intent(getContext(), DetailActivity.class);
-                i.putExtra("post", Parcels.wrap(post));
-                startActivity(i);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("post", post);
+                detailFragment.setArguments(bundle);
+                fragmentManager.beginTransaction().replace(R.id.frameLayoutContainer, detailFragment).commit();
             }
         };
 
