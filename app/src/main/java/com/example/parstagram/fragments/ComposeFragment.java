@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -42,6 +43,8 @@ public class ComposeFragment extends Fragment {
     private Button submitButton;
     private File photoFile;
     public String photoFileName = "photo.jpg";
+    private FragmentManager fragmentManager;
+    private Fragment detailFragment;
 
 
 
@@ -63,6 +66,8 @@ public class ComposeFragment extends Fragment {
         composeImage = view.findViewById(R.id.image);
         pictureButton = view.findViewById(R.id.pictureButton);
         submitButton = view.findViewById(R.id.submitButton);
+        fragmentManager = getActivity().getSupportFragmentManager();
+        detailFragment = new DetailFragment();
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,9 +148,7 @@ public class ComposeFragment extends Fragment {
                     Log.i(TAG, "Succesfully saved post");
                     composeDescription.setText("");
                     composeImage.setImageResource(0);
-//                    Intent i = new Intent();
-//                    getActivity().setResult(RESULT_OK, i);
-//                    getActivity().finish();
+                    fragmentManager.beginTransaction().replace(R.id.frameLayoutContainer, detailFragment).commit();
                 }
             }
         });
