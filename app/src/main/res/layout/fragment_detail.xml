@@ -26,7 +26,6 @@
         android:layout_above="@id/detailImage"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/detailToolbar"
         android:gravity="bottom|right"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"

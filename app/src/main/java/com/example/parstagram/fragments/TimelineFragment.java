@@ -31,7 +31,7 @@ public class TimelineFragment extends Fragment {
     public static final String TAG = "TimelineFragment";
     public static final int REQUEST_CODE = 20;
     protected static final int NUMBER_POSTS = 20;
-    private RecyclerView recyclerView;
+    protected RecyclerView recyclerView;
     protected List<Post> posts;
     protected PostsAdapter adapter;
     protected SwipeRefreshLayout swipeRefreshLayout;
