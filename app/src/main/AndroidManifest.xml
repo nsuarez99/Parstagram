@@ -26,9 +26,8 @@
                 android:resource="@xml/fileprovider" />
         </provider>
 
-        <activity android:name=".ComposeActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".TimelineActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

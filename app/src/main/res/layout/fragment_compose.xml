@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ComposeActivity">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/timelineToolbar"
-        android:minHeight="?attr/actionBarSize"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/black"
-        app:title="@string/app_name"
-        android:background="@color/WhiteSmoke">
-    </androidx.appcompat.widget.Toolbar>
+    tools:context=".fragments.ComposeFragment">
 
     <EditText
         android:id="@+id/description"

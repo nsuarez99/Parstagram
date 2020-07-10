@@ -1,18 +1,24 @@
-package com.example.parstagram;
+package com.example.parstagram.fragments;
 
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.example.parstagram.DetailActivity;
+import com.example.parstagram.Post;
+import com.example.parstagram.PostsAdapter;
+import com.example.parstagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseQuery;
 
@@ -21,44 +27,37 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TimelineActivity extends AppCompatActivity {
 
+public class TimelineFragment extends Fragment {
+
+    public static final String TAG = "TimelineFragment";
     public static final int REQUEST_CODE = 20;
-    public static final String TAG = "TimelineActivity";
     private static final int NUMBER_POSTS = 20;
-    private Toolbar toolbar;
     private RecyclerView recyclerView;
     private List<Post> posts;
     private PostsAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+
+    public TimelineFragment() {
+        // Required empty public constructor
+    }
+
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_timeline, container, false);
+    }
 
-        recyclerView = findViewById(R.id.recyclerViewPosts);
-        toolbar = findViewById(R.id.timelineToolbar);
-        swipeRefreshLayout = findViewById(R.id.swipeRefreshContainer);
-        setSupportActionBar(toolbar);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        //set toolbar composing and setting action
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.composeIcon) {
-                    Log.i(TAG, "composition has been clicked");
-                    Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
-                    startActivityForResult(i, REQUEST_CODE);
-                }
-                else if (item.getItemId() == R.id.settingIcon){
-                    Log.i(TAG, "profile has been clicked");
-                    Intent i = new Intent(TimelineActivity.this, SettingsActivity.class);
-                    startActivity(i);
-                }
-                return true;
-            }
-        });
+        recyclerView = view.findViewById(R.id.recyclerViewPosts);
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshContainer);
 
         // Setup refresh listener which triggers new data loading
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -81,7 +80,7 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void onClick(int position) {
                 Post post = posts.get(position);
-                Intent i = new Intent(TimelineActivity.this, DetailActivity.class);
+                Intent i = new Intent(getContext(), DetailActivity.class);
                 i.putExtra("post", Parcels.wrap(post));
                 startActivity(i);
             }
@@ -89,24 +88,10 @@ public class TimelineActivity extends AppCompatActivity {
 
         //set adapter and recycler view
         posts = new ArrayList<>();
-        adapter = new PostsAdapter(TimelineActivity.this, posts, onClickListener);
+        adapter = new PostsAdapter(getContext(), posts, onClickListener);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         queryPosts();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        queryPosts();
-    }
-
-    // Menu icons are inflated just as they were with actionbar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        return true;
     }
 
     private void queryPosts() {
@@ -133,6 +118,12 @@ public class TimelineActivity extends AppCompatActivity {
                 adapter.addAll(objects);
                 swipeRefreshLayout.setRefreshing(false);
             }
-            });
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        queryPosts();
     }
 }

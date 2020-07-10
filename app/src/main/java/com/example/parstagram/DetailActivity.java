@@ -52,12 +52,7 @@ public class DetailActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.composeIcon) {
-                    Log.i(TAG, "composition has been clicked");
-                    Intent i = new Intent(DetailActivity.this, ComposeActivity.class);
-                    startActivityForResult(i, TimelineActivity.REQUEST_CODE);
-                }
-                else if (item.getItemId() == R.id.settingIcon){
+                if (item.getItemId() == R.id.settingIcon){
                     Log.i(TAG, "profile has been clicked");
                     Intent i = new Intent(DetailActivity.this, SettingsActivity.class);
                     startActivity(i);

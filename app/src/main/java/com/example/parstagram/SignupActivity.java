@@ -50,7 +50,7 @@ public class SignupActivity extends AppCompatActivity {
                 if (e == null) {
                     Toast.makeText(SignupActivity.this, "Created Account", Toast.LENGTH_SHORT);
                     Log.i(TAG, "Succesfully created user");
-                    Intent i = new Intent(SignupActivity.this, TimelineActivity.class);
+                    Intent i = new Intent(SignupActivity.this, MainActivity.class);
                     startActivity(i);
                     finish();
                 } else {
