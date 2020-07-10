@@ -100,7 +100,7 @@ public class TimelineFragment extends Fragment {
         scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                loadNextQueryPosts(posts.size() - 1);
+                loadNextQueryPosts(posts.size());
             }
         };
         recyclerView.addOnScrollListener(scrollListener);
