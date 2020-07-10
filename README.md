@@ -20,8 +20,8 @@ The following **required** functionality is completed:
 
 The following **stretch** features are implemented:
 
-- [ ] Style the login page to look like the real Instagram login page.
-- [ ] Style the feed to look like the real Instagram feed.
+- [x] Style the login page to look like the real Instagram login page.
+- [x] Style the feed to look like the real Instagram feed.
 - [x] User should switch between different tabs - viewing all posts (feed view), capture (camera and photo gallery view) and profile tabs (posts made) using fragments and a Bottom Navigation View.
 - [x] User can load more posts once he or she reaches the bottom of the feed using endless scrolling.
 - [x] Show the username and creation time for each post
@@ -36,12 +36,14 @@ The following **stretch** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] Created a settings fragment that allows the user to log out
+- [x] Created a details fragment so when you click on the timeline it opens the detail view as a fragment
+- [x] Compose fragment auto closes after the photo is uploaded
+
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. Would have liked to have gotten rid of sign up button and changed it to a hyperlink
 
 ## Video Walkthrough
 

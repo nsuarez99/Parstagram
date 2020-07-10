@@ -44,7 +44,7 @@ public class ComposeFragment extends Fragment {
     private File photoFile;
     public String photoFileName = "photo.jpg";
     private FragmentManager fragmentManager;
-    private Fragment detailFragment;
+    private Fragment timelineFragment;
 
 
 
@@ -67,7 +67,7 @@ public class ComposeFragment extends Fragment {
         pictureButton = view.findViewById(R.id.pictureButton);
         submitButton = view.findViewById(R.id.submitButton);
         fragmentManager = getActivity().getSupportFragmentManager();
-        detailFragment = new DetailFragment();
+        timelineFragment = new TimelineFragment();
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +148,7 @@ public class ComposeFragment extends Fragment {
                     Log.i(TAG, "Succesfully saved post");
                     composeDescription.setText("");
                     composeImage.setImageResource(0);
-                    fragmentManager.beginTransaction().replace(R.id.frameLayoutContainer, detailFragment).commit();
+                    fragmentManager.beginTransaction().replace(R.id.frameLayoutContainer, timelineFragment).commit();
                 }
             }
         });
