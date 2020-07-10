@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.profileIcon:
                         fragment = profileFragment;
+                        break;
                     default:
                         fragment = timelineFragment;
                         break;

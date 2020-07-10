@@ -32,11 +32,11 @@ public class TimelineFragment extends Fragment {
 
     public static final String TAG = "TimelineFragment";
     public static final int REQUEST_CODE = 20;
-    private static final int NUMBER_POSTS = 20;
+    protected static final int NUMBER_POSTS = 20;
     private RecyclerView recyclerView;
-    private List<Post> posts;
-    private PostsAdapter adapter;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    protected List<Post> posts;
+    protected PostsAdapter adapter;
+    protected SwipeRefreshLayout swipeRefreshLayout;
 
 
     public TimelineFragment() {
@@ -94,7 +94,7 @@ public class TimelineFragment extends Fragment {
         queryPosts();
     }
 
-    private void queryPosts() {
+    protected void queryPosts() {
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         // include data referred by user key
