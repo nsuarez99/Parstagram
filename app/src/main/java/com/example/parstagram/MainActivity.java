@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.parstagram.fragments.ComposeFragment;
 import com.example.parstagram.fragments.ProfileFragment;
+import com.example.parstagram.fragments.SettingsFragment;
 import com.example.parstagram.fragments.TimelineFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         final Fragment timelineFragment = new TimelineFragment();
         final Fragment composeFragment = new ComposeFragment();
         final Fragment profileFragment = new ProfileFragment();
+        final Fragment settingsFragment = new SettingsFragment();
 
         toolbar = findViewById(R.id.timelineToolbar);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -46,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.settingIcon){
-                    Log.i(TAG, "profile has been clicked");
-                    Intent i = new Intent(MainActivity.this, SettingsActivity.class);
-                    startActivity(i);
-                }
+                Fragment fragment;
+                if (item.getItemId() == R.id.settingIcon) {
+                    fragment = settingsFragment;
+                    fragmentManager.beginTransaction().replace(R.id.frameLayoutContainer, fragment).commit();
+                    }
                 return true;
             }
         });

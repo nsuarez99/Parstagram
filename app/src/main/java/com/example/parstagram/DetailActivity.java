@@ -52,12 +52,14 @@ public class DetailActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.settingIcon){
-                    Log.i(TAG, "profile has been clicked");
-                    Intent i = new Intent(DetailActivity.this, SettingsActivity.class);
-                    startActivity(i);
-                }
+                //TODO fix settings click
                 return true;
+//                if (item.getItemId() == R.id.settingIcon){
+//                    Log.i(TAG, "profile has been clicked");
+//                    Intent i = new Intent(DetailActivity.this, SettingsActivity.class);
+//                    startActivity(i);
+//                }
+//                return true;
             }
         });
     }
