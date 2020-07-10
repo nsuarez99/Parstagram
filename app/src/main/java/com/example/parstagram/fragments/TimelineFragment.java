@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.parstagram.EndlessRecyclerViewScrollListener;
 import com.example.parstagram.Post;
 import com.example.parstagram.PostsAdapter;
 import com.example.parstagram.R;
@@ -30,11 +31,12 @@ public class TimelineFragment extends Fragment {
 
     public static final String TAG = "TimelineFragment";
     public static final int REQUEST_CODE = 20;
-    protected static final int NUMBER_POSTS = 20;
+    protected static final int NUMBER_POSTS = 2;
     protected RecyclerView recyclerView;
     protected List<Post> posts;
     protected PostsAdapter adapter;
     protected SwipeRefreshLayout swipeRefreshLayout;
+    protected EndlessRecyclerViewScrollListener scrollListener;
 
 
     public TimelineFragment() {
@@ -92,11 +94,20 @@ public class TimelineFragment extends Fragment {
         posts = new ArrayList<>();
         adapter = new PostsAdapter(getContext(), posts, onClickListener);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                loadNextQueryPosts(posts.size() - 1);
+            }
+        };
+        recyclerView.addOnScrollListener(scrollListener);
         queryPosts();
     }
 
-    protected void queryPosts() {
+    protected void queryPosts(){
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         // include data referred by user key
@@ -114,9 +125,36 @@ public class TimelineFragment extends Fragment {
                     Log.e(TAG, "Issue with getting posts", e);
                     return;
                 }
-
                 // save received posts to list and notify adapter of new data
                 adapter.clear();
+                adapter.addAll(objects);
+                swipeRefreshLayout.setRefreshing(false);
+                scrollListener.resetState();
+            }
+        });
+    }
+
+    protected void loadNextQueryPosts(int skip) {
+        // specify what type of data we want to query - Post.class
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        // include data referred by user key
+        query.include(Post.KEY_USER);
+        // limit query to latest 20 items
+        query.setLimit(NUMBER_POSTS);
+        //set the starting post
+        query.setSkip(skip);
+        // order posts by creation date (newest first)
+        query.addDescendingOrder(Post.KEY_TIME);
+        // start an asynchronous call for posts
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> objects, com.parse.ParseException e) {
+                // check for errors
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting posts", e);
+                    return;
+                }
+                // save received posts to list and notify adapter of new data
                 adapter.addAll(objects);
                 swipeRefreshLayout.setRefreshing(false);
             }

@@ -56,6 +56,7 @@ public class ProfileFragment extends TimelineFragment {
                 adapter.clear();
                 adapter.addAll(objects);
                 swipeRefreshLayout.setRefreshing(false);
+                scrollListener.resetState();
             }
         });
     }
