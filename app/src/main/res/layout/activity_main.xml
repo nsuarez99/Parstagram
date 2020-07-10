@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_margin="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -14,9 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleTextColor="@android:color/black"
-        app:title="@string/app_name"
         app:menu="@menu/toolbar_menu"
         android:background="@color/WhiteSmoke">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/instagram"
+            android:layout_width="114dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/nav_logo_whiteout" />
+    </RelativeLayout>
+
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
@@ -31,5 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/WhiteSmoke"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/menu_bottom_navigation" />
 </RelativeLayout>

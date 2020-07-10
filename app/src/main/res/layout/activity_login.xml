@@ -5,24 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="12dp"
     tools:context=".LoginActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/timelineToolbar"
-        android:minHeight="?attr/actionBarSize"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/black"
-        app:title="@string/app_name"
-        android:background="@color/WhiteSmoke">
-    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/instagramTitle"
+        android:layout_width="273dp"
+        android:layout_height="93dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        app:srcCompat="@drawable/nav_logo_whiteout" />
 
     <EditText
         android:id="@+id/signupUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/timelineToolbar"
+        android:layout_below="@+id/instagramTitle"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
@@ -51,6 +51,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginRight="16dp"
         android:layout_centerHorizontal="true"
+        android:background="#405DE6"
         android:onClick="loginClick"
         android:text="Login" />
 
@@ -75,7 +76,9 @@
         android:layout_marginTop="6dp"
         android:layout_marginRight="16dp"
         android:layout_centerHorizontal="true"
+        android:background="#82cc68"
         android:onClick="signupClick"
         android:text="SignUp" />
+
 
 </RelativeLayout>
