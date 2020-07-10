@@ -42,6 +42,36 @@ public class ProfileFragment extends TimelineFragment {
     }
 
     @Override
+    protected void loadNextQueryPosts(int skip) {
+        // specify what type of data we want to query - Post.class
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        // include data referred by user key
+        query.include(Post.KEY_USER);
+        //only query this user
+        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        // limit query to latest 20 items
+        query.setLimit(NUMBER_POSTS);
+        //set the starting post
+        query.setSkip(skip);
+        // order posts by creation date (newest first)
+        query.addDescendingOrder(Post.KEY_TIME);
+        // start an asynchronous call for posts
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> objects, com.parse.ParseException e) {
+                // check for errors
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting posts", e);
+                    return;
+                }
+                // save received posts to list and notify adapter of new data
+                adapter.addAll(objects);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
+
+    @Override
     protected void queryPosts() {
         // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
